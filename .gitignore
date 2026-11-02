@@ -32,3 +32,8 @@ frontend/.env.local
 .idea/
 .DS_Store
 Thumbs.db
+
+# Apuntes y notas personales locales (Obsidian)
+Apunte/
+apunte/
+
