@@ -15,7 +15,9 @@ artifacts/*
 # Datos locales generados y base de datos local
 data/processed/*
 !data/processed/.gitkeep
+data/raw/*.parquet
 pgdata/
+
 
 # Frontend (Node / Vite)
 frontend/node_modules/
