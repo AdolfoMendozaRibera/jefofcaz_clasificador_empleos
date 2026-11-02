@@ -1,0 +1,25 @@
+# Dependencias del Clasificador de Ofertas Laborales
+# Versiones fijadas para reproducibilidad y entorno Docker identico
+
+# Manipulacion de datos y Machine Learning
+numpy==2.5.4
+pandas==3.1.0
+scikit-learn==1.9.1
+joblib==1.6.0
+requests==2.32.3
+
+# Procesamiento de Lenguaje Natural (NLP)
+spacy==3.8.16
+es_core_news_sm @ https://github.com/explosion/spacy-models/releases/download/es_core_news_sm-3.8.0/es_core_news_sm-3.8.0-py3-none-any.whl
+nltk==3.10.4
+emoji==2.16.0
+
+# Configuracion central
+pyyaml==6.0.3
+
+# Backend API REST y Base de Datos
+fastapi==0.161.0
+uvicorn==0.54.0
+python-multipart==0.0.32
+sqlalchemy==2.1.6
+psycopg[binary]==3.3.6

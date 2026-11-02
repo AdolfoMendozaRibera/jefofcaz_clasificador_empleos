@@ -1,0 +1,40 @@
+# Fuente unica de verdad para la configuracion del clasificador de ofertas laborales.
+# Cualquier modificacion aqui se propaga al pipeline y a los experimentos.
+
+seed: 42
+
+data:
+  raw_path: data/raw/ofertas_laborales.csv
+  processed_path: data/processed/ofertas_5_sectores.csv
+  dataset_hf: "MiguelGP-13/JobOffers_ESP"
+  test_size: 0.20          # Particion estratificada para evaluacion final
+  min_chars: 15            # Validacion en el borde: longitud minima de texto
+  max_chars: 5000          # Validacion en el borde: longitud maxima de texto
+
+nlp:
+  # Palabras de negacion y matiz que NUNCA deben removerse
+  keep_words: ["no", ni, nunca, jamás, nada, tampoco, sin, nadie,
+               bien, mal, bueno, buena, muy, poco, más, menos, pero]
+  # Palabras comodin genericas del dominio de reclutamiento que anaden ruido a todas las clases
+  extra_stopwords: [empresa, buscamos, puesto, oferta, trabajo, incorporacion, requisitos,
+                    perfil, funciones, contrato, jornada, persona, seleccion, importante]
+
+tfidf:
+  max_features: 4000       # Limite del vocabulario
+  min_df: 2                # Ignorar terminos que aparecen en menos de 2 ofertas
+  max_df: 0.85             # Ignorar terminos omnipresentes en mas del 85% de ofertas
+  sublinear_tf: true       # Escala logaritmica 1 + log(tf) para evitar que terminos repetidos dominen
+
+experiments:
+  cv_folds: 5
+  scoring: f1_macro        # Metrica balanceada oficial para clasificacion multiclase
+  normalizers: [stem, lemma]
+  stopword_lists: [spacy_full, adjusted]
+  ngram_ranges: [[1, 1], [1, 2]]
+  models:
+    naive_bayes:
+      alpha: [0.1, 0.5, 1.0]
+      fit_prior: [true, false]
+    logistic_regression:
+      C: [0.5, 1.0, 2.0, 5.0]
+      class_weight: [null, balanced]

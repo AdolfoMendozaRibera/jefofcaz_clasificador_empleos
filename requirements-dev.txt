@@ -1,0 +1,12 @@
+-r requirements.txt
+
+# Pruebas automatizadas
+pytest==9.1.1
+httpx==0.28.1
+
+# Notebooks para EDA y experimentos
+jupyterlab==4.6.4
+nbconvert==7.17.2
+ipykernel==7.4.0
+matplotlib==3.11.2
+seaborn==0.13.2

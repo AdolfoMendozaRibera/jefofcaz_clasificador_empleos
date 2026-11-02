@@ -1,0 +1,78 @@
+# docker compose up --build
+#   trainer   ejecuta el pipeline de NLP y entrena los modelos (termina y sale)
+#   api       FastAPI; inicia una vez que el trainer genera el modelo serializado
+#   frontend  React compilado servido con Nginx en el puerto 8080
+#
+# Perfiles opcionales:
+#   docker compose --profile dev run --rm tests     pruebas automatizadas con pytest
+#   docker compose --profile dev up notebook        JupyterLab en el puerto 8888
+
+x-python: &python
+  build:
+    context: .
+    target: runtime
+  image: jobscope-ml
+  volumes:
+    - ./artifacts:/app/artifacts
+    - ./data:/app/data
+    - ./params.yaml:/app/params.yaml:ro
+    - ./src:/app/src:ro
+    - ./api:/app/api:ro
+
+services:
+  trainer:
+    <<: *python
+    command: ["python", "-m", "src.pipeline", "--skip-if-trained"]
+
+  api:
+    <<: *python
+    command: ["uvicorn", "api.main:app", "--host", "0.0.0.0", "--port", "8000"]
+    ports:
+      - "${API_PORT:-8000}:8000"
+    depends_on:
+      trainer:
+        condition: service_completed_successfully
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8000/api/health')"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+
+  frontend:
+    build: ./frontend
+    image: jobscope-frontend
+    ports:
+      - "${FRONTEND_PORT:-8080}:80"
+    depends_on:
+      api:
+        condition: service_healthy
+
+  tests:
+    build:
+      context: .
+      target: dev
+    image: jobscope-dev
+    profiles: [dev]
+    command: ["pytest", "-q", "-p", "no:cacheprovider"]
+    volumes:
+      - ./params.yaml:/app/params.yaml:ro
+      - ./src:/app/src:ro
+      - ./api:/app/api:ro
+      - ./tests:/app/tests:ro
+
+  notebook:
+    build:
+      context: .
+      target: dev
+    image: jobscope-dev
+    profiles: [dev]
+    command: ["jupyter", "lab", "--ip=0.0.0.0", "--port=8888", "--no-browser",
+              "--allow-root", "--ServerApp.token=", "--notebook-dir=/app"]
+    ports:
+      - "8888:8888"
+    volumes:
+      - ./notebooks:/app/notebooks
+      - ./artifacts:/app/artifacts
+      - ./data:/app/data
+      - ./params.yaml:/app/params.yaml:ro
+      - ./src:/app/src:ro

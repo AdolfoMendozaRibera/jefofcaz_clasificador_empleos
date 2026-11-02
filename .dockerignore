@@ -1,0 +1,12 @@
+.git
+.gitignore
+**/__pycache__
+**/.pytest_cache
+**/.ipynb_checkpoints
+.venv
+venv
+artifacts/*
+!artifacts/.gitkeep
+frontend
+docs
+*.md
