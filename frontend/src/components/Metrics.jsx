@@ -366,7 +366,7 @@ export function Metrics() {
                       </div>
                     </div>
                   );
-                })();
+                });
               })()}
             </div>
           </Card>

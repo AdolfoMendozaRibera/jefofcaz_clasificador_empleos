@@ -1,64 +1,64 @@
 /* ==========================================================================
-   SISTEMA DE DISEÑO Y TOKENS CSS (web-fullstack.md)
+   SISTEMA DE DISEÑO Y TOKENS CSS (Clean SaaS / Blanco & Slate Cálido)
    ========================================================================== */
 
 :root {
-  /* Paleta base neutra (Dark Mode profesional pulido) */
-  --bg-primary: #0a0f1d;
-  --bg-secondary: #111827;
-  --bg-tertiary: #1f2937;
-  --bg-hover: #374151;
+  /* Paleta base neutra (Light Mode limpio, profesional y amigable) */
+  --bg-primary: #f8fafc;        /* Slate 50: fondo general descansado */
+  --bg-secondary: #ffffff;      /* Blanco puro: tarjetas, header y modales */
+  --bg-tertiary: #f1f5f9;       /* Slate 100: inputs, tablas y contenedores secundarios */
+  --bg-hover: #e2e8f0;          /* Slate 200: interacción hover suave */
 
-  --text-primary: #f9fafb;
-  --text-secondary: #d1d5db;
-  --text-muted: #9ca3af;
+  --text-primary: #0f172a;      /* Slate 900: texto principal nítido */
+  --text-secondary: #334155;    /* Slate 700: texto secundario legible */
+  --text-muted: #64748b;        /* Slate 500: leyendas y textos auxiliares */
 
-  --border-subtle: #1f2937;
-  --border-default: #374151;
-  --border-accent: #3b82f6;
+  --border-subtle: #f1f5f9;     /* Separaciones muy discretas */
+  --border-default: #e2e8f0;    /* Slate 200: bordes definidos de tarjetas */
+  --border-accent: #2563eb;     /* Foco y selección activa */
 
-  /* Colores de marca / acento */
-  --accent-primary: #3b82f6;
-  --accent-hover: #2563eb;
-  --accent-glow: rgba(59, 130, 246, 0.2);
+  /* Colores de marca / acento (Azul amigable institucional) */
+  --accent-primary: #2563eb;
+  --accent-hover: #1d4ed8;
+  --accent-glow: rgba(37, 99, 235, 0.12);
 
   /* Estados funcionales */
-  --success: #10b981;
-  --success-bg: rgba(16, 185, 129, 0.15);
-  --warning: #f59e0b;
-  --warning-bg: rgba(245, 158, 11, 0.15);
-  --error: #ef4444;
-  --error-bg: rgba(239, 68, 68, 0.15);
+  --success: #059669;           /* Esmeralda 600 */
+  --success-bg: #ecfdf5;        /* Esmeralda 50 */
+  --warning: #d97706;           /* Ámbar 600 */
+  --warning-bg: #fffbeb;        /* Ámbar 50 */
+  --error: #dc2626;             /* Rojo 600 */
+  --error-bg: #fef2f2;          /* Rojo 50 */
 
-  /* Tokens semánticos para los 5 Sectores Laborales */
-  --sector-transporte: #38bdf8;
-  --sector-transporte-bg: rgba(56, 189, 248, 0.12);
-  --sector-transporte-border: rgba(56, 189, 248, 0.35);
+  /* Tokens semánticos para los 5 Sectores Laborales (Pasteles firmes y legibles) */
+  --sector-transporte: #0284c7;
+  --sector-transporte-bg: #f0f9ff;
+  --sector-transporte-border: #bae6fd;
 
-  --sector-hosteleria: #fb923c;
-  --sector-hosteleria-bg: rgba(251, 146, 60, 0.12);
-  --sector-hosteleria-border: rgba(251, 146, 60, 0.35);
+  --sector-hosteleria: #ea580c;
+  --sector-hosteleria-bg: #fff7ed;
+  --sector-hosteleria-border: #fed7aa;
 
-  --sector-ventas: #34d399;
-  --sector-ventas-bg: rgba(52, 211, 153, 0.12);
-  --sector-ventas-border: rgba(52, 211, 153, 0.35);
+  --sector-ventas: #059669;
+  --sector-ventas-bg: #ecfdf5;
+  --sector-ventas-border: #a7f3d0;
 
-  --sector-salud: #f43f5e;
-  --sector-salud-bg: rgba(244, 63, 94, 0.12);
-  --sector-salud-border: rgba(244, 63, 94, 0.35);
+  --sector-salud: #e11d48;
+  --sector-salud-bg: #fff1f2;
+  --sector-salud-border: #fecdd3;
 
-  --sector-construccion: #fbbf24;
-  --sector-construccion-bg: rgba(251, 191, 36, 0.12);
-  --sector-construccion-border: rgba(251, 191, 36, 0.35);
+  --sector-construccion: #d97706;
+  --sector-construccion-bg: #fffbeb;
+  --sector-construccion-border: #fde68a;
 
-  /* Dimensiones y radios */
+  /* Dimensiones y sombras sutiles de elevación */
   --radius-sm: 6px;
   --radius-md: 10px;
-  --radius-lg: 16px;
+  --radius-lg: 14px;
   --radius-full: 9999px;
-  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.25);
-  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.4);
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.04);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -2px rgba(0, 0, 0, 0.03);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.06), 0 4px 6px -4px rgba(0, 0, 0, 0.03);
 }
 
 /* Reset y tipografía */
@@ -69,7 +69,7 @@
 }
 
 body {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   background-color: var(--bg-primary);
   color: var(--text-primary);
   line-height: 1.6;
@@ -79,9 +79,9 @@ body {
 
 /* Estructura general (Layout) */
 .app-container {
-  max-width: 1280px;
+  max-width: 1240px;
   margin: 0 auto;
-  padding: 1.5rem;
+  padding: 2rem 1.5rem;
 }
 
 /* Header de la Aplicación */
@@ -89,9 +89,9 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding-bottom: 1.25rem;
-  border-bottom: 1px solid var(--border-subtle);
-  margin-bottom: 1.5rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid var(--border-default);
+  margin-bottom: 1.75rem;
   flex-wrap: wrap;
   gap: 1rem;
 }
@@ -103,24 +103,23 @@ body {
 }
 
 .brand-icon {
-  font-size: 2rem;
+  font-size: 1.85rem;
   background: var(--bg-secondary);
   border: 1px solid var(--border-default);
   border-radius: var(--radius-md);
   padding: 0.35rem 0.65rem;
+  box-shadow: var(--shadow-sm);
 }
 
 .brand-title {
   font-size: 1.45rem;
   font-weight: 700;
   letter-spacing: -0.02em;
-  background: linear-gradient(135deg, #ffffff 0%, #9ca3af 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  color: var(--text-primary);
 }
 
 .brand-subtitle {
-  font-size: 0.82rem;
+  font-size: 0.84rem;
   color: var(--text-muted);
 }
 
@@ -134,7 +133,9 @@ body {
   font-size: 0.8rem;
   font-weight: 600;
   background-color: var(--bg-secondary);
-  border: 1px solid var(--border-subtle);
+  border: 1px solid var(--border-default);
+  box-shadow: var(--shadow-sm);
+  color: var(--text-secondary);
 }
 
 .health-dot {
@@ -145,22 +146,22 @@ body {
 
 .health-dot.ok {
   background-color: var(--success);
-  box-shadow: 0 0 8px var(--success);
+  box-shadow: 0 0 6px rgba(5, 150, 105, 0.4);
 }
 
 .health-dot.degraded {
   background-color: var(--error);
-  box-shadow: 0 0 8px var(--error);
+  box-shadow: 0 0 6px rgba(220, 38, 38, 0.4);
 }
 
 /* Barra de Pestañas (Tabs) */
 .tabs-nav {
   display: flex;
   gap: 0.5rem;
-  background-color: var(--bg-secondary);
-  padding: 0.4rem;
+  background-color: var(--bg-tertiary);
+  padding: 0.35rem;
   border-radius: var(--radius-lg);
-  border: 1px solid var(--border-subtle);
+  border: 1px solid var(--border-default);
   margin-bottom: 2rem;
   overflow-x: auto;
 }
@@ -185,19 +186,19 @@ body {
 
 .tab-button:hover {
   color: var(--text-primary);
-  background-color: var(--bg-hover);
+  background-color: rgba(255, 255, 255, 0.6);
 }
 
 .tab-button.active {
-  color: #ffffff;
-  background-color: var(--accent-primary);
-  box-shadow: 0 4px 12px var(--accent-glow);
+  color: var(--accent-primary);
+  background-color: var(--bg-secondary);
+  box-shadow: var(--shadow-sm);
 }
 
 /* Tarjetas y Contenedores */
 .card {
   background-color: var(--bg-secondary);
-  border: 1px solid var(--border-subtle);
+  border: 1px solid var(--border-default);
   border-radius: var(--radius-lg);
   padding: 1.5rem;
   box-shadow: var(--shadow-md);
@@ -209,12 +210,13 @@ body {
   align-items: center;
   margin-bottom: 1.25rem;
   padding-bottom: 0.75rem;
-  border-bottom: 1px solid var(--border-subtle);
+  border-bottom: 1px solid var(--border-default);
 }
 
 .card-title {
   font-size: 1.15rem;
   font-weight: 700;
+  color: var(--text-primary);
   display: flex;
   align-items: center;
   gap: 0.5rem;
@@ -253,24 +255,25 @@ body {
 
 .btn-primary:hover:not(:disabled) {
   background-color: var(--accent-hover);
-  box-shadow: 0 4px 12px var(--accent-glow);
+  box-shadow: 0 4px 10px rgba(37, 99, 235, 0.25);
 }
 
 .btn:disabled {
-  opacity: 0.5;
+  opacity: 0.55;
   cursor: not-allowed;
   transform: none !important;
 }
 
 .btn-outline {
-  background: transparent;
+  background-color: var(--bg-secondary);
   color: var(--text-secondary);
   border: 1px solid var(--border-default);
 }
 
 .btn-outline:hover:not(:disabled) {
-  background-color: var(--bg-hover);
+  background-color: var(--bg-tertiary);
   color: var(--text-primary);
+  border-color: #cbd5e1;
 }
 
 /* Inputs y Textareas */
@@ -283,14 +286,14 @@ body {
 .textarea-field {
   width: 100%;
   min-height: 140px;
-  background-color: var(--bg-tertiary);
+  background-color: var(--bg-secondary);
   border: 1px solid var(--border-default);
   border-radius: var(--radius-md);
   padding: 1rem;
   color: var(--text-primary);
   font-size: 0.95rem;
   resize: vertical;
-  transition: border-color 0.2s ease;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
 .textarea-field:focus {
@@ -325,6 +328,7 @@ body {
   justify-content: space-between;
   font-size: 0.85rem;
   font-weight: 500;
+  color: var(--text-secondary);
 }
 
 .prob-bar-track {
@@ -363,23 +367,24 @@ body {
 }
 
 .token-chip.protected {
-  background-color: rgba(16, 185, 129, 0.2);
-  color: #34d399;
-  border: 1px solid rgba(16, 185, 129, 0.4);
+  background-color: #ecfdf5;
+  color: #047857;
+  border: 1px solid #a7f3d0;
   font-weight: 700;
 }
 
 .token-chip.removed {
-  background-color: rgba(239, 68, 68, 0.1);
-  color: #f87171;
+  background-color: #fef2f2;
+  color: #b91c1c;
+  border: 1px solid #fecaca;
   text-decoration: line-through;
-  opacity: 0.7;
+  opacity: 0.8;
 }
 
 .token-chip.pair {
-  background-color: rgba(56, 189, 248, 0.15);
-  color: #7dd3fc;
-  border: 1px solid rgba(56, 189, 248, 0.3);
+  background-color: #f0f9ff;
+  color: #0369a1;
+  border: 1px solid #bae6fd;
 }
 
 /* Estados de borde obligatorios: Loading, Empty, Error, Overflow */
@@ -396,15 +401,15 @@ body {
 .state-empty-icon {
   font-size: 3rem;
   margin-bottom: 1rem;
-  opacity: 0.6;
+  opacity: 0.8;
 }
 
 .state-error {
   background-color: var(--error-bg);
-  border: 1px solid var(--error);
+  border: 1px solid #fecaca;
   border-radius: var(--radius-md);
   padding: 1.25rem;
-  color: #fca5a5;
+  color: #991b1b;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -413,7 +418,7 @@ body {
 }
 
 .skeleton-box {
-  background: linear-gradient(90deg, var(--bg-tertiary) 25%, var(--bg-hover) 50%, var(--bg-tertiary) 75%);
+  background: linear-gradient(90deg, #f1f5f9 25%, #e2e8f0 50%, #f1f5f9 75%);
   background-size: 200% 100%;
   animation: shimmer 1.5s infinite;
   border-radius: var(--radius-sm);
@@ -427,8 +432,9 @@ body {
 .table-overflow-container {
   max-height: 480px;
   overflow-y: auto;
-  border: 1px solid var(--border-subtle);
+  border: 1px solid var(--border-default);
   border-radius: var(--radius-md);
+  background-color: var(--bg-secondary);
 }
 
 /* Tablas */
@@ -441,12 +447,12 @@ body {
 
 .data-table th, .data-table td {
   padding: 0.85rem 1rem;
-  border-bottom: 1px solid var(--border-subtle);
+  border-bottom: 1px solid var(--border-default);
 }
 
 .data-table th {
-  background-color: var(--bg-secondary);
-  color: var(--text-muted);
+  background-color: var(--bg-tertiary);
+  color: var(--text-secondary);
   font-weight: 600;
   position: sticky;
   top: 0;
@@ -454,10 +460,8 @@ body {
 }
 
 .data-table tr:hover {
-  background-color: var(--bg-tertiary);
+  background-color: #f8fafc;
 }
-
-
 
 /* ==========================================================================
    ESTILOS ESPECÍFICOS DE LA VISTA ANALYZE
@@ -472,11 +476,12 @@ body {
   align-items: center;
   gap: 0.75rem;
   background-color: var(--bg-secondary);
-  border: 1px solid var(--border-subtle);
+  border: 1px solid var(--border-default);
   border-radius: var(--radius-md);
-  padding: 0.65rem 1rem;
+  padding: 0.75rem 1rem;
   margin-bottom: 1.5rem;
   flex-wrap: wrap;
+  box-shadow: var(--shadow-sm);
 }
 
 .quick-examples-title {
@@ -517,7 +522,7 @@ body {
 
 /* Tarjeta ganadora de predicción */
 .winner-card {
-  background-color: var(--bg-tertiary);
+  background-color: #f8fafc;
   border: 1px solid var(--border-default);
   border-radius: var(--radius-md);
   padding: 1.25rem;
@@ -532,8 +537,8 @@ body {
 }
 
 .nlp-step {
-  background-color: var(--bg-tertiary);
-  border: 1px solid var(--border-subtle);
+  background-color: #f8fafc;
+  border: 1px solid var(--border-default);
   border-radius: var(--radius-md);
   padding: 1rem;
 }
@@ -572,8 +577,8 @@ body {
 }
 
 .nlp-step-content {
-  background-color: var(--bg-primary);
-  border: 1px solid var(--border-subtle);
+  background-color: #ffffff;
+  border: 1px solid var(--border-default);
   border-radius: var(--radius-sm);
   padding: 0.65rem 0.85rem;
   font-size: 0.85rem;
@@ -583,18 +588,17 @@ body {
   overflow-y: auto;
 }
 
-
 /* ==========================================================================
    ESTILOS ESPECÍFICOS DE LA VISTA BATCH (CSV)
    ========================================================================== */
 
 /* Zona de Drag & Drop */
 .dropzone {
-  border: 2px dashed var(--border-default);
+  border: 2px dashed #cbd5e1;
   border-radius: var(--radius-lg);
   padding: 2.25rem 1.5rem;
   text-align: center;
-  background-color: var(--bg-tertiary);
+  background-color: #f8fafc;
   cursor: pointer;
   transition: all 0.2s ease;
   display: flex;
@@ -605,18 +609,18 @@ body {
 
 .dropzone:hover {
   border-color: var(--accent-primary);
-  background-color: var(--bg-hover);
+  background-color: #f1f5f9;
 }
 
 .dropzone.drag-over {
   border-color: var(--accent-primary);
-  background-color: var(--accent-glow);
+  background-color: #eff6ff;
   transform: scale(1.01);
 }
 
 .dropzone.has-file {
   border-color: var(--success);
-  background-color: var(--success-bg);
+  background-color: #f0fdf4;
 }
 
 .dropzone-icon {
@@ -633,18 +637,21 @@ body {
 
 .kpi-card {
   background-color: var(--bg-secondary);
-  border: 1px solid var(--border-subtle);
+  border: 1px solid var(--border-default);
   border-radius: var(--radius-md);
   padding: 1.25rem;
   display: flex;
   flex-direction: column;
   gap: 0.35rem;
+  box-shadow: var(--shadow-sm);
 }
 
 .kpi-label {
   font-size: 0.82rem;
   color: var(--text-muted);
-  font-weight: 500;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
 }
 
 .kpi-value {
@@ -682,6 +689,7 @@ body {
   justify-content: space-between;
   font-size: 0.85rem;
   font-weight: 500;
+  color: var(--text-secondary);
 }
 
 /* Paginación de tabla */
@@ -691,9 +699,8 @@ body {
   align-items: center;
   padding-top: 1rem;
   margin-top: 0.75rem;
-  border-top: 1px solid var(--border-subtle);
+  border-top: 1px solid var(--border-default);
 }
-
 
 /* ==========================================================================
    ESTILOS ESPECÍFICOS DE LA VISTA METRICS (MATRIZ 5x5 Y COEFICIENTES)
@@ -703,7 +710,7 @@ body {
 .confusion-matrix {
   width: 100%;
   border-collapse: separate;
-  border-spacing: 4px;
+  border-spacing: 6px;
   font-size: 0.85rem;
   text-align: center;
 }
@@ -722,7 +729,8 @@ body {
 }
 
 .col-header {
-  background-color: var(--bg-secondary);
+  background-color: #f8fafc;
+  border: 1px solid var(--border-default);
   border-radius: var(--radius-sm);
   color: var(--text-secondary);
   font-size: 0.78rem;
@@ -737,7 +745,8 @@ body {
 }
 
 .row-header {
-  background-color: var(--bg-secondary);
+  background-color: #f8fafc;
+  border: 1px solid var(--border-default);
   border-radius: var(--radius-sm);
   text-align: left;
   padding: 0.5rem 0.75rem !important;
@@ -760,21 +769,21 @@ body {
 }
 
 .matrix-cell.hit {
-  background-color: rgba(16, 185, 129, var(--intensity, 0.3));
-  color: #ecfdf5;
-  border: 1px solid rgba(16, 185, 129, 0.4);
+  background-color: rgba(5, 150, 105, var(--intensity, 0.3));
+  color: #064e3b;
+  border: 1px solid rgba(5, 150, 105, 0.4);
 }
 
 .matrix-cell.miss {
-  background-color: rgba(239, 68, 68, var(--intensity, 0.25));
-  color: #fee2e2;
-  border: 1px solid rgba(239, 68, 68, 0.3);
+  background-color: rgba(220, 38, 38, var(--intensity, 0.2));
+  color: #7f1d1d;
+  border: 1px solid rgba(220, 38, 38, 0.25);
 }
 
 .matrix-cell.zero {
-  background-color: var(--bg-tertiary);
-  color: var(--text-muted);
-  opacity: 0.4;
+  background-color: #f8fafc;
+  border: 1px solid #f1f5f9;
+  color: #cbd5e1;
 }
 
 .cell-value {
@@ -808,7 +817,7 @@ body {
 }
 
 .sector-tab-btn:hover {
-  filter: brightness(1.15);
+  filter: brightness(0.96);
 }
 
 /* Grilla de términos más influyentes */
@@ -819,8 +828,8 @@ body {
 }
 
 .term-card {
-  background-color: var(--bg-tertiary);
-  border: 1px solid var(--border-subtle);
+  background-color: #f8fafc;
+  border: 1px solid var(--border-default);
   border-radius: var(--radius-sm);
   padding: 0.65rem 0.85rem;
   display: flex;
@@ -845,12 +854,11 @@ body {
   font-weight: 700;
 }
 
-
 /* Footer de la Aplicación */
 .app-footer {
   margin-top: 3rem;
   padding-top: 1.5rem;
-  border-top: 1px solid var(--border-subtle);
+  border-top: 1px solid var(--border-default);
   text-align: center;
   font-size: 0.85rem;
   color: var(--text-secondary);
