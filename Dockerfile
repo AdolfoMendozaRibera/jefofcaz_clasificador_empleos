@@ -13,7 +13,7 @@ WORKDIR /app
 
 # Dependencias primero para aprovechar cache de capas Docker
 COPY requirements.txt .
-RUN pip install -r requirements.txt
+RUN pip install --default-timeout=1000 --retries 10 -r requirements.txt
 
 # Codigo fuente y configuracion
 COPY params.yaml ./
