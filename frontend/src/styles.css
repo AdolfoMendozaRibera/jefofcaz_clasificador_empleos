@@ -693,3 +693,154 @@ body {
   margin-top: 0.75rem;
   border-top: 1px solid var(--border-subtle);
 }
+
+
+/* ==========================================================================
+   ESTILOS ESPECÍFICOS DE LA VISTA METRICS (MATRIZ 5x5 Y COEFICIENTES)
+   ========================================================================== */
+
+/* Matriz de confusión interactiva (Heatmap) */
+.confusion-matrix {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 4px;
+  font-size: 0.85rem;
+  text-align: center;
+}
+
+.confusion-matrix th {
+  padding: 0.65rem 0.5rem;
+  font-weight: 600;
+}
+
+.corner-th {
+  background-color: var(--bg-tertiary);
+  color: var(--text-muted);
+  border-radius: var(--radius-sm);
+  text-align: left;
+  padding-left: 0.75rem !important;
+}
+
+.col-header {
+  background-color: var(--bg-secondary);
+  border-radius: var(--radius-sm);
+  color: var(--text-secondary);
+  font-size: 0.78rem;
+  line-height: 1.2;
+}
+
+.col-header-text {
+  display: block;
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  margin-top: 0.15rem;
+}
+
+.row-header {
+  background-color: var(--bg-secondary);
+  border-radius: var(--radius-sm);
+  text-align: left;
+  padding: 0.5rem 0.75rem !important;
+  font-size: 0.82rem;
+  white-space: nowrap;
+}
+
+/* Celdas de la Matriz */
+.matrix-cell {
+  padding: 0.65rem 0.4rem;
+  border-radius: var(--radius-sm);
+  transition: transform 0.15s ease;
+  min-width: 65px;
+}
+
+.matrix-cell:hover {
+  transform: scale(1.06);
+  z-index: 2;
+  box-shadow: var(--shadow-md);
+}
+
+.matrix-cell.hit {
+  background-color: rgba(16, 185, 129, var(--intensity, 0.3));
+  color: #ecfdf5;
+  border: 1px solid rgba(16, 185, 129, 0.4);
+}
+
+.matrix-cell.miss {
+  background-color: rgba(239, 68, 68, var(--intensity, 0.25));
+  color: #fee2e2;
+  border: 1px solid rgba(239, 68, 68, 0.3);
+}
+
+.matrix-cell.zero {
+  background-color: var(--bg-tertiary);
+  color: var(--text-muted);
+  opacity: 0.4;
+}
+
+.cell-value {
+  font-size: 1.05rem;
+  font-weight: 700;
+}
+
+.cell-pct {
+  font-size: 0.7rem;
+  opacity: 0.85;
+}
+
+/* Selector de sector para explorar términos */
+.sector-tabs {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.sector-tab-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.45rem 0.85rem;
+  border-radius: var(--radius-full);
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  border: 1px solid transparent;
+  transition: all 0.2s ease;
+}
+
+.sector-tab-btn:hover {
+  filter: brightness(1.15);
+}
+
+/* Grilla de términos más influyentes */
+.terms-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 0.75rem;
+}
+
+.term-card {
+  background-color: var(--bg-tertiary);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  padding: 0.65rem 0.85rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.term-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.term-word {
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.term-weight {
+  font-size: 0.82rem;
+  font-weight: 700;
+}
