@@ -27,7 +27,7 @@ nlp:
   keep_words: ["no", ni, nunca, jamás, nada, tampoco, sin, nadie,
                bien, mal, bueno, buena, muy, poco, más, menos, pero]
   # Palabras comodin genericas del dominio de reclutamiento que anaden ruido a todas las clases
-  extra_stopwords: [empresa, buscamos, puesto, oferta, trabajo, incorporacion, requisitos,
+  extra_stopwords: [empresa, busca, buscamos, puesto, oferta, trabajo, incorporacion, requisitos,
                     perfil, funciones, contrato, jornada, persona, seleccion, importante]
 
 tfidf:
