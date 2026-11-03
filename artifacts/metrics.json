@@ -1,0 +1,295 @@
+{
+  "modelo": "LogisticRegression",
+  "f1_macro": 0.9155,
+  "accuracy": 0.9132,
+  "total_test": 668,
+  "total_errores": 58,
+  "clases": [
+    "construccion_mantenimiento",
+    "hosteleria_gastronomia",
+    "salud_servicios_sociales",
+    "transporte_logistica",
+    "ventas_comercial"
+  ],
+  "reporte_por_clase": {
+    "construccion_mantenimiento": {
+      "precision": 0.9253,
+      "recall": 0.9415,
+      "f1_score": 0.9333,
+      "support": 171
+    },
+    "hosteleria_gastronomia": {
+      "precision": 0.9048,
+      "recall": 0.9268,
+      "f1_score": 0.9157,
+      "support": 82
+    },
+    "salud_servicios_sociales": {
+      "precision": 0.9418,
+      "recall": 0.9271,
+      "f1_score": 0.9344,
+      "support": 192
+    },
+    "transporte_logistica": {
+      "precision": 0.8771,
+      "recall": 0.8579,
+      "f1_score": 0.8674,
+      "support": 183
+    },
+    "ventas_comercial": {
+      "precision": 0.9048,
+      "recall": 0.95,
+      "f1_score": 0.9268,
+      "support": 40
+    }
+  },
+  "matriz_confusion": [
+    [
+      161,
+      0,
+      0,
+      10,
+      0
+    ],
+    [
+      4,
+      76,
+      0,
+      1,
+      1
+    ],
+    [
+      3,
+      0,
+      178,
+      9,
+      2
+    ],
+    [
+      6,
+      8,
+      11,
+      157,
+      1
+    ],
+    [
+      0,
+      0,
+      0,
+      2,
+      38
+    ]
+  ],
+  "terminos_mas_influyentes": {
+    "construccion_mantenimiento": [
+      {
+        "termino": "instal",
+        "peso": 4.1589
+      },
+      {
+        "termino": "albañil",
+        "peso": 4.0461
+      },
+      {
+        "termino": "manten",
+        "peso": 4.0018
+      },
+      {
+        "termino": "construccion",
+        "peso": 3.9186
+      },
+      {
+        "termino": "mecan",
+        "peso": 3.5566
+      },
+      {
+        "termino": "obra",
+        "peso": 3.1751
+      },
+      {
+        "termino": "oficial",
+        "peso": 2.9459
+      },
+      {
+        "termino": "electr",
+        "peso": 2.7758
+      },
+      {
+        "termino": "repar",
+        "peso": 2.68
+      },
+      {
+        "termino": "electric",
+        "peso": 2.5053
+      }
+    ],
+    "hosteleria_gastronomia": [
+      {
+        "termino": "cociner",
+        "peso": 7.0204
+      },
+      {
+        "termino": "camarer",
+        "peso": 6.8233
+      },
+      {
+        "termino": "cocin",
+        "peso": 5.8136
+      },
+      {
+        "termino": "cuin",
+        "peso": 3.6929
+      },
+      {
+        "termino": "cociner general",
+        "peso": 3.0158
+      },
+      {
+        "termino": "hosteleri",
+        "peso": 3.0154
+      },
+      {
+        "termino": "restaurant",
+        "peso": 2.8266
+      },
+      {
+        "termino": "restaur",
+        "peso": 2.7203
+      },
+      {
+        "termino": "sal",
+        "peso": 2.6925
+      },
+      {
+        "termino": "cambr",
+        "peso": 2.4866
+      }
+    ],
+    "salud_servicios_sociales": [
+      {
+        "termino": "enfermer",
+        "peso": 3.808
+      },
+      {
+        "termino": "enfermeri",
+        "peso": 3.7937
+      },
+      {
+        "termino": "social",
+        "peso": 3.496
+      },
+      {
+        "termino": "medic",
+        "peso": 2.9474
+      },
+      {
+        "termino": "fisioterapeut",
+        "peso": 2.7062
+      },
+      {
+        "termino": "auxiliar enfermeri",
+        "peso": 2.3738
+      },
+      {
+        "termino": "educ",
+        "peso": 2.3667
+      },
+      {
+        "termino": "auxiliar",
+        "peso": 2.3165
+      },
+      {
+        "termino": "cuid",
+        "peso": 2.2728
+      },
+      {
+        "termino": "grad",
+        "peso": 2.2581
+      }
+    ],
+    "transporte_logistica": [
+      {
+        "termino": "conductor",
+        "peso": 6.2028
+      },
+      {
+        "termino": "almac",
+        "peso": 4.1151
+      },
+      {
+        "termino": "camion",
+        "peso": 3.8705
+      },
+      {
+        "termino": "conductor camion",
+        "peso": 2.8632
+      },
+      {
+        "termino": "repartidor",
+        "peso": 2.4354
+      },
+      {
+        "termino": "repart",
+        "peso": 2.1938
+      },
+      {
+        "termino": "moz",
+        "peso": 2.0662
+      },
+      {
+        "termino": "transport",
+        "peso": 1.9475
+      },
+      {
+        "termino": "cap",
+        "peso": 1.8827
+      },
+      {
+        "termino": "carnet",
+        "peso": 1.8561
+      }
+    ],
+    "ventas_comercial": [
+      {
+        "termino": "comercial",
+        "peso": 5.4171
+      },
+      {
+        "termino": "dependient",
+        "peso": 5.1435
+      },
+      {
+        "termino": "vent",
+        "peso": 4.3649
+      },
+      {
+        "termino": "client",
+        "peso": 3.7568
+      },
+      {
+        "termino": "administr",
+        "peso": 3.3128
+      },
+      {
+        "termino": "comerci",
+        "peso": 3.2205
+      },
+      {
+        "termino": "agent",
+        "peso": 2.608
+      },
+      {
+        "termino": "gesti",
+        "peso": 2.5535
+      },
+      {
+        "termino": "carniceri",
+        "peso": 2.5124
+      },
+      {
+        "termino": "atencion client",
+        "peso": 2.3749
+      }
+    ]
+  }
+}

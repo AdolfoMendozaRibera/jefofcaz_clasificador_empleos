@@ -8,11 +8,12 @@ __pycache__/
 .pytest_cache/
 .ipynb_checkpoints/
 
-# Artefactos generados (se ignoran modelos compilados pesados, se conserva gitkeep)
+# Artefactos generados (se conservan modelos compactos y reportes)
 artifacts/*
 !artifacts/.gitkeep
 !artifacts/*.json
 !artifacts/*.csv
+!artifacts/*.joblib
 
 # Datos locales generados y base de datos local
 data/processed/*
