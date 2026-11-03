@@ -172,3 +172,4 @@ def test_integridad_errors_csv() -> None:
 
     # Verificar que no haya causas lingüísticas vacías
     assert df_err["causa_linguistica"].isna().sum() == 0
+
