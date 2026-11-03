@@ -582,3 +582,114 @@ body {
   max-height: 120px;
   overflow-y: auto;
 }
+
+
+/* ==========================================================================
+   ESTILOS ESPECÍFICOS DE LA VISTA BATCH (CSV)
+   ========================================================================== */
+
+/* Zona de Drag & Drop */
+.dropzone {
+  border: 2px dashed var(--border-default);
+  border-radius: var(--radius-lg);
+  padding: 2.25rem 1.5rem;
+  text-align: center;
+  background-color: var(--bg-tertiary);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.dropzone:hover {
+  border-color: var(--accent-primary);
+  background-color: var(--bg-hover);
+}
+
+.dropzone.drag-over {
+  border-color: var(--accent-primary);
+  background-color: var(--accent-glow);
+  transform: scale(1.01);
+}
+
+.dropzone.has-file {
+  border-color: var(--success);
+  background-color: var(--success-bg);
+}
+
+.dropzone-icon {
+  font-size: 2.5rem;
+  opacity: 0.8;
+}
+
+/* Grilla de KPIs */
+.kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1rem;
+}
+
+.kpi-card {
+  background-color: var(--bg-secondary);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.kpi-label {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+.kpi-value {
+  font-size: 1.85rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.kpi-value-sector {
+  display: flex;
+  align-items: center;
+  min-height: 2.4rem;
+}
+
+.kpi-sub {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+}
+
+/* Barras de distribución de sectores */
+.distribution-bars {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+
+.dist-row {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.dist-label {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+
+/* Paginación de tabla */
+.pagination-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 1rem;
+  margin-top: 0.75rem;
+  border-top: 1px solid var(--border-subtle);
+}
