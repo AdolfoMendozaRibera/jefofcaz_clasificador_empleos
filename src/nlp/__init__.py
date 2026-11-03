@@ -6,6 +6,7 @@ from src.nlp.morphology import (
     obtener_stopwords_personalizadas,
     reducir_morfologia,
 )
+from src.nlp.pipeline import crear_pipeline_nlp, crear_vectorizador_tfidf
 from src.nlp.preprocessing import TextPreprocessor
 
 __all__ = [
@@ -16,4 +17,7 @@ __all__ = [
     "obtener_stopwords_personalizadas",
     "reducir_morfologia",
     "TextPreprocessor",
+    "crear_vectorizador_tfidf",
+    "crear_pipeline_nlp",
 ]
+
