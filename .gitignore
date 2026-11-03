@@ -11,6 +11,8 @@ __pycache__/
 # Artefactos generados (se ignoran modelos compilados pesados, se conserva gitkeep)
 artifacts/*
 !artifacts/.gitkeep
+!artifacts/*.json
+!artifacts/*.csv
 
 # Datos locales generados y base de datos local
 data/processed/*
