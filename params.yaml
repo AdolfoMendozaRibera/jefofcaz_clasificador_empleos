@@ -13,6 +13,12 @@ data:
 
   min_chars: 15            # Validacion en el borde: longitud minima de texto
   max_chars: 5000          # Validacion en el borde: longitud maxima de texto
+  sectores:
+    - transporte_logistica
+    - hosteleria_gastronomia
+    - ventas_comercial
+    - salud_servicios_sociales
+    - construccion_mantenimiento
 
 nlp:
   # Palabras de negacion y matiz que NUNCA deben removerse
