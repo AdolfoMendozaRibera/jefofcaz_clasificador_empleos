@@ -1,0 +1,1145 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JobScope NLP — Presentación Oficial del Proyecto Integrador</title>
+  <style>
+    :root {
+      --bg: #F8FAFC;
+      --card-bg: #FFFFFF;
+      --text: #0F172A;
+      --text-muted: #64748B;
+      --primary: #2563EB;
+      --primary-hover: #1D4ED8;
+      --success: #059669;
+      --border: #E2E8F0;
+      --radius: 16px;
+      --shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.03);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    }
+
+    body {
+      background-color: #0B0F19;
+      color: var(--text);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      overflow: hidden;
+    }
+
+    /* Barra de progreso superior */
+    .progress-bar-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 6px;
+      background: rgba(255, 255, 255, 0.1);
+      z-index: 100;
+    }
+
+    .progress-bar {
+      height: 100%;
+      background: linear-gradient(90deg, #3B82F6, #10B981);
+      width: 12.5%;
+      transition: width 0.3s ease;
+    }
+
+    /* Contenedor del Slide (16:9) */
+    .slide-viewport {
+      width: 92vw;
+      max-width: 1240px;
+      height: 86vh;
+      max-height: 720px;
+      background: var(--bg);
+      border-radius: var(--radius);
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .slide {
+      display: none;
+      flex-direction: column;
+      height: 100%;
+      padding: 2rem 3rem 1.5rem 3rem;
+      animation: fadeIn 0.35s ease;
+      overflow-y: auto;
+    }
+
+    .slide.active {
+      display: flex;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Header del slide */
+    .slide-header {
+      margin-bottom: 1.5rem;
+      border-bottom: 2px solid var(--border);
+      padding-bottom: 0.8rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+    }
+
+    .slide-title {
+      font-size: 1.85rem;
+      font-weight: 800;
+      color: var(--text);
+      letter-spacing: -0.02em;
+    }
+
+    .slide-badge {
+      font-size: 0.8rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--primary);
+      background: #EFF6FF;
+      padding: 0.35rem 0.8rem;
+      border-radius: 9999px;
+      border: 1px solid #BFDBFE;
+    }
+
+    /* Contenido general */
+    .content-grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      align-items: center;
+      flex: 1;
+    }
+
+    .content-grid-2-custom {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 2rem;
+      align-items: center;
+      flex: 1;
+    }
+
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.1rem 1.35rem;
+      box-shadow: var(--shadow);
+    }
+
+    .kpi-row {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .kpi-card {
+      background: #FFFFFF;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1rem;
+      text-align: center;
+      box-shadow: var(--shadow);
+    }
+
+    .kpi-value {
+      font-size: 1.85rem;
+      font-weight: 800;
+      color: var(--primary);
+      line-height: 1.1;
+      margin-bottom: 0.25rem;
+    }
+
+    .kpi-label {
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .pill-tag {
+      display: inline-block;
+      font-size: 0.78rem;
+      font-weight: 700;
+      padding: 0.2rem 0.6rem;
+      border-radius: 9999px;
+      margin-right: 0.35rem;
+    }
+
+    .feature-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.85rem;
+    }
+
+    .feature-item {
+      display: flex;
+      gap: 0.8rem;
+      align-items: flex-start;
+      font-size: 1rem;
+      line-height: 1.5;
+      color: #334155;
+    }
+
+    .feature-bullet {
+      background: #EFF6FF;
+      color: var(--primary);
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.8rem;
+      font-weight: 800;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .img-container {
+      width: 100%;
+      height: 100%;
+      max-height: 380px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .img-container img {
+      max-width: 100%;
+      max-height: 380px;
+      object-fit: contain;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow);
+    }
+
+    /* Cadena visual de bloques destacados (Pipeline y Arquitectura) */
+    .flow-chain {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.65rem;
+      width: 100%;
+      margin-bottom: 1.25rem;
+    }
+
+    .flow-step-card {
+      flex: 1;
+      background: #FFFFFF;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.05rem 0.85rem;
+      text-align: center;
+      box-shadow: var(--shadow);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      min-height: 120px;
+      transition: transform 0.2s;
+    }
+
+    .flow-step-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 24px -6px rgba(0, 0, 0, 0.08);
+    }
+
+    .flow-step-title {
+      font-size: 1.08rem;
+      font-weight: 800;
+      margin-bottom: 0.45rem;
+      letter-spacing: -0.01em;
+    }
+
+    .flow-step-text {
+      font-size: 0.88rem;
+      color: #475569;
+      line-height: 1.5;
+    }
+
+    .flow-step-text strong {
+      color: #0F172A;
+    }
+
+    .flow-connector {
+      font-size: 1.6rem;
+      font-weight: 800;
+      color: #94A3B8;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      user-select: none;
+      flex-shrink: 0;
+    }
+
+    /* Diapositiva de Portada */
+    .cover-slide {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      height: 100%;
+      padding: 3rem;
+    }
+
+    .cover-tag {
+      background: #EFF6FF;
+      color: var(--primary);
+      border: 1px solid #BFDBFE;
+      padding: 0.45rem 1.25rem;
+      border-radius: 9999px;
+      font-size: 0.9rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 1.5rem;
+    }
+
+    .cover-title {
+      font-size: 3.2rem;
+      font-weight: 900;
+      letter-spacing: -0.03em;
+      color: #0F172A;
+      line-height: 1.15;
+      margin-bottom: 1rem;
+    }
+
+    .cover-subtitle {
+      font-size: 1.25rem;
+      color: var(--text-muted);
+      max-width: 780px;
+      line-height: 1.6;
+      margin-bottom: 2.5rem;
+    }
+
+    .cover-meta {
+      display: flex;
+      gap: 2rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--border);
+      font-size: 0.95rem;
+      color: #475569;
+    }
+
+    .cover-meta strong {
+      color: #0F172A;
+    }
+
+    /* Tabla científica */
+    .data-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.9rem;
+      background: #FFFFFF;
+      border-radius: 8px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+    }
+
+    .data-table th, .data-table td {
+      padding: 0.75rem 1rem;
+      text-align: left;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .data-table th {
+      background: #F1F5F9;
+      color: #334155;
+      font-weight: 700;
+      font-size: 0.85rem;
+    }
+
+    .data-table tr.winner {
+      background: #ECFDF5;
+      font-weight: 700;
+      color: #064E3B;
+    }
+
+    /* Controles de navegación */
+    .nav-controls {
+      position: fixed;
+      bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 1.25rem;
+      background: rgba(15, 23, 42, 0.85);
+      backdrop-filter: blur(8px);
+      padding: 0.65rem 1.5rem;
+      border-radius: 9999px;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      z-index: 100;
+    }
+
+    .nav-btn {
+      background: #1E293B;
+      color: #F8FAFC;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 1.1rem;
+      font-weight: bold;
+      transition: all 0.2s;
+    }
+
+    .nav-btn:hover {
+      background: var(--primary);
+      border-color: var(--primary);
+    }
+
+    .nav-counter {
+      color: #94A3B8;
+      font-size: 0.9rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+    }
+
+    .nav-notes-btn {
+      background: rgba(255, 255, 255, 0.08);
+      color: #94A3B8;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 9999px;
+      padding: 0.35rem 0.85rem;
+      font-size: 0.78rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      transition: all 0.2s;
+    }
+
+    .nav-notes-btn:hover, body.show-notes .nav-notes-btn {
+      background: var(--primary);
+      color: #FFFFFF;
+      border-color: var(--primary);
+    }
+
+    /* Notas del Expositor (Ocultas por defecto para el público; se activan con tecla 'N' o botón) */
+    .speaker-notes {
+      display: none;
+      margin-top: 0.75rem;
+      background: #F8FAFC;
+      border-left: 4px solid var(--primary);
+      border-top: 1px solid var(--border);
+      border-right: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      padding: 0.65rem 1rem;
+      border-radius: 8px;
+      font-size: 0.82rem;
+      color: #334155;
+      animation: fadeInNotes 0.2s ease-in-out;
+    }
+
+    body.show-notes .speaker-notes {
+      display: block;
+    }
+
+    @keyframes fadeInNotes {
+      from { opacity: 0; transform: translateY(4px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .speaker-notes strong {
+      color: var(--primary);
+    }
+
+    /* Print view (Exportar a PDF) */
+    @media print {
+      body {
+        background: transparent;
+        overflow: visible;
+      }
+      .progress-bar-container, .nav-controls, .speaker-notes {
+        display: none !important;
+      }
+      .slide-viewport {
+        width: 100vw;
+        max-width: none;
+        height: 100vh;
+        max-height: none;
+        border-radius: 0;
+        box-shadow: none;
+        page-break-after: always;
+      }
+      .slide {
+        display: flex !important;
+        page-break-after: always;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Barra de progreso superior -->
+  <div class="progress-bar-container">
+    <div class="progress-bar" id="progressBar"></div>
+  </div>
+
+  <div class="slide-viewport">
+
+    <!-- ==================== SLIDE 1: PORTADA ==================== -->
+    <div class="slide active">
+      <div class="cover-slide">
+        <div class="cover-tag">Proyecto Integrador — Tópicos y Programación Avanzada</div>
+        <h1 class="cover-title">JobScope AI</h1>
+        <p class="cover-subtitle">
+          Clasificación y Auditoría Inteligente de Ofertas Laborales en Español mediante NLP Riguroso y Machine Learning Supervisado
+        </p>
+        <div class="cover-meta">
+          <div>Autor: <strong>Adolfo Mendoza Ribera</strong></div>
+          <div>Materia: <strong>Tópicos y Programación Avanzada</strong></div>
+          <div>Fecha: <strong>Noviembre 2026</strong></div>
+          <div>Stack: <strong>FastAPI + Scikit-Learn + React 18 + Docker</strong></div>
+        </div>
+      </div>
+      <div class="speaker-notes">
+        <strong>Guion del Expositor (30 seg):</strong> "Buenos días profesores. Hoy presento JobScope AI, una solución de ingeniería de extremo a extremo que automatiza la ingesta, normalización lingüística adaptada al español y clasificación de ofertas de empleo con un 91.55% de F1-Score en test ciego."
+      </div>
+    </div>
+
+    <!-- ==================== SLIDE 2: EL PROBLEMA Y LA SOLUCIÓN ==================== -->
+    <div class="slide">
+      <div class="slide-header">
+        <div class="slide-title">El Problema de Negocio y Nuestra Solución</div>
+        <div class="slide-badge">Contexto y Propósito</div>
+      </div>
+      <div class="content-grid-2">
+        <div class="card" style="border-left: 4px solid #EF4444; height: 100%; display: flex; flex-direction: column; justify-content: space-between;">
+          <div>
+            <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.8rem;">
+              <span style="font-size: 1.5rem;">⚠️</span>
+              <h3 style="color: #0F172A; font-size: 1.15rem;">El Problema Actual en Reclutamiento</h3>
+            </div>
+            <p style="font-size: 0.92rem; color: #475569; line-height: 1.6; margin-bottom: 0.8rem;">
+              En plataformas masivas (LinkedIn, Computrabajo, Trabajópolis), miles de convocatorias se redactan en <strong>texto libre y no estructurado</strong>.
+            </p>
+            <ul style="font-size: 0.88rem; color: #64748B; padding-left: 1.2rem; line-height: 1.6;">
+              <li><strong>Categorización errónea:</strong> Reclutadores no saben dónde ubicar puestos híbridos o marcan categorías apresuradas.</li>
+              <li><strong>Vacantes invisibles:</strong> Ofertas mal indexadas se pierden en la multitud sin llegar a candidatos idóneos.</li>
+              <li><strong>Costo operativo:</strong> La revisión manual de 500 ofertas toma entre 4 y 6 horas de trabajo repetitivo.</li>
+            </ul>
+          </div>
+          <div style="background: #FEF2F2; border: 1px solid #FECACA; padding: 0.65rem 0.9rem; border-radius: 8px; font-size: 0.84rem; color: #991B1B;">
+            <strong>Impacto:</strong> Cuello de botella en recursos humanos y pérdida de talento calificado.
+          </div>
+        </div>
+
+        <div class="card" style="border-left: 4px solid var(--success); height: 100%; display: flex; flex-direction: column; justify-content: space-between;">
+          <div>
+            <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.8rem;">
+              <span style="font-size: 1.5rem;">💡</span>
+              <h3 style="color: var(--success); font-size: 1.15rem;">Nuestra Solución: JobScope AI</h3>
+            </div>
+            <p style="font-size: 0.92rem; color: #475569; line-height: 1.6; margin-bottom: 0.8rem;">
+              Un sistema integral de IA de producción que ingesta texto crudo, aplica un pipeline de NLP estricto para el español y predice el sector en milisegundos:
+            </p>
+            <div style="display: flex; flex-direction: column; gap: 0.65rem;">
+              <div style="display: flex; gap: 0.6rem; align-items: flex-start; font-size: 0.86rem; color: #334155;">
+                <span style="color: var(--primary); font-weight: 800;">1.</span>
+                <span><strong>Análisis Individual con Auditoría:</strong> Inferencia inmediata en 3 ms con desglose transparente paso a paso (cero caja negra).</span>
+              </div>
+              <div style="display: flex; gap: 0.6rem; align-items: flex-start; font-size: 0.86rem; color: #334155;">
+                <span style="color: #EA580C; font-weight: 800;">2.</span>
+                <span><strong>Procesamiento Masivo CSV:</strong> Carga de cientos de vacantes en lote y exportación enriquecida en menos de 1 segundo.</span>
+              </div>
+              <div style="display: flex; gap: 0.6rem; align-items: flex-start; font-size: 0.86rem; color: #334155;">
+                <span style="color: var(--success); font-weight: 800;">3.</span>
+                <span><strong>Panel de Métricas Científicas:</strong> Trazabilidad total con matriz de confusión y explicabilidad global por coeficientes &beta; (pesos del modelo).</span>
+              </div>
+            </div>
+          </div>
+          <div style="background: #ECFDF5; border: 1px solid #A7F3D0; padding: 0.65rem 0.9rem; border-radius: 8px; font-size: 0.84rem; color: #065F46;">
+            <strong>Beneficio clave:</strong> Ahorro del 95% de tiempo operativo y categorización confiable con 91.55% de F1.
+          </div>
+        </div>
+      </div>
+      <div class="speaker-notes">
+        <strong>Guion del Expositor (45 seg):</strong> "Plataformas como LinkedIn reciben miles de ofertas en texto libre. Quien publica muchas veces se equivoca de sector y la oferta se pierde. JobScope AI soluciona esto ingiriendo el texto crudo y clasificándolo automáticamente con explicabilidad paso a paso y procesamiento por lotes masivos."
+      </div>
+    </div>
+
+    <!-- ==================== SLIDE 3: DATASET Y MAPEO A 5 SECTORES ==================== -->
+    <div class="slide">
+      <div class="slide-header">
+        <div class="slide-title">Dataset EURES y Mapeo Jerárquico a 5 Sectores</div>
+        <div class="slide-badge">Fase 1: Datos y Curación</div>
+      </div>
+      <div class="content-grid-2">
+        <div class="feature-list">
+          <div class="card">
+            <h4 style="color: #0F172A; margin-bottom: 0.4rem; font-size: 0.95rem;">Origen y Principio de Inmutabilidad</h4>
+            <p style="font-size: 0.88rem; color: #475569; line-height: 1.5;">
+              Dataset real de la Red Europea EURES 2025 (<code>MiguelGP-13/JobOffers_ESP</code>). Los datos crudos (7.261 filas) permanecen inmutables en <code>data/raw/</code>.
+            </p>
+          </div>
+          <div class="card">
+            <h4 style="color: #D97706; margin-bottom: 0.4rem; font-size: 0.95rem;">Solución a la Dispersión de Clases</h4>
+            <p style="font-size: 0.88rem; color: #475569; line-height: 1.5;">
+              El dataset original presentaba más de <strong>300 oficios dispersos</strong> (pizzero, chofer de góndola, dependiente). Clasificar 300 clases daría F1 &lt; 20% y una matriz intratable de 300×300.
+            </p>
+            <p style="font-size: 0.88rem; color: #475569; line-height: 1.5; margin-top: 0.35rem;">
+              Se implementó un mapeo jerárquico a <strong>5 macro-sectores ESCO/EURES</strong>, consolidando <strong>3.337 ofertas limpias</strong> con cero nulos y cero duplicados.
+            </p>
+          </div>
+        </div>
+        <div class="card">
+          <h4 style="margin-bottom: 0.8rem; color: #0F172A; font-size: 0.95rem;">Los 5 Sectores Profesionales Oficiales:</h4>
+          <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+            <div style="display: flex; justify-content: space-between; align-items: center; padding: 0.45rem 0.75rem; background: #F0F9FF; border-radius: 8px; border: 1px solid #BAE6FD;">
+              <span><span style="font-size: 1.15rem; margin-right: 0.4rem;">🚛</span><strong style="color: #0284C7; font-size: 0.86rem;">Transporte y Logística</strong></span>
+              <span style="font-size: 0.8rem; font-weight: 700; color: #0369A1;">914 of. (27.39%)</span>
+            </div>
+            <div style="display: flex; justify-content: space-between; align-items: center; padding: 0.45rem 0.75rem; background: #FFF7ED; border-radius: 8px; border: 1px solid #FED7AA;">
+              <span><span style="font-size: 1.15rem; margin-right: 0.4rem;">🍳</span><strong style="color: #EA580C; font-size: 0.86rem;">Hostelería y Gastronomía</strong></span>
+              <span style="font-size: 0.8rem; font-weight: 700; color: #C2410C;">409 of. (12.26%)</span>
+            </div>
+            <div style="display: flex; justify-content: space-between; align-items: center; padding: 0.45rem 0.75rem; background: #ECFDF5; border-radius: 8px; border: 1px solid #A7F3D0;">
+              <span><span style="font-size: 1.15rem; margin-right: 0.4rem;">💼</span><strong style="color: #059669; font-size: 0.86rem;">Ventas y Comercial</strong></span>
+              <span style="font-size: 0.8rem; font-weight: 700; color: #047857;">200 of. (5.99%)</span>
+            </div>
+            <div style="display: flex; justify-content: space-between; align-items: center; padding: 0.45rem 0.75rem; background: #FFF1F2; border-radius: 8px; border: 1px solid #FECDD3;">
+              <span><span style="font-size: 1.15rem; margin-right: 0.4rem;">🩺</span><strong style="color: #E11D48; font-size: 0.86rem;">Salud y Servicios Sociales</strong></span>
+              <span style="font-size: 0.8rem; font-weight: 700; color: #BE123C;">958 of. (28.71%)</span>
+            </div>
+            <div style="display: flex; justify-content: space-between; align-items: center; padding: 0.45rem 0.75rem; background: #FFFBEB; border-radius: 8px; border: 1px solid #FDE68A;">
+              <span><span style="font-size: 1.15rem; margin-right: 0.4rem;">🏗️</span><strong style="color: #D97706; font-size: 0.86rem;">Construcción y Mantenimiento</strong></span>
+              <span style="font-size: 0.8rem; font-weight: 700; color: #B45309;">856 of. (25.65%)</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="speaker-notes">
+        <strong>Guion del Expositor (45 seg):</strong> "Descargamos 7.261 ofertas de EURES. Como existían 300 oficios con solo 1 o 2 ejemplos cada uno, los agrupamos jerárquicamente en 5 macro-sectores para garantizar masa crítica de aprendizaje supervisado y una matriz de 5x5 manejable."
+      </div>
+    </div>
+
+    <!-- ==================== SLIDE 4: EDA Y PARTICIÓN ANTI-LEAKAGE ==================== -->
+    <div class="slide">
+      <div class="slide-header">
+        <div class="slide-title">Análisis Exploratorio (EDA) y Partición sin Fuga</div>
+        <div class="slide-badge">Fase 1: Diagnóstico e Integridad</div>
+      </div>
+      <div class="content-grid-2">
+        <div style="display: flex; flex-direction: column; gap: 0.9rem;">
+          <div class="kpi-row" style="grid-template-columns: 1fr 1fr; margin-bottom: 0;">
+            <div class="kpi-card">
+              <div class="kpi-value" style="font-size: 1.55rem; color: #0284C7;">2.669 (80%)</div>
+              <div class="kpi-label">Entrenamiento (train.csv)</div>
+            </div>
+            <div class="kpi-card">
+              <div class="kpi-value" style="font-size: 1.55rem; color: var(--success);">668 (20%)</div>
+              <div class="kpi-label">Prueba Ciega (test.csv)</div>
+            </div>
+          </div>
+          <div class="card">
+            <h4 style="color: var(--primary); margin-bottom: 0.35rem; font-size: 0.92rem;">Blindaje Anti Data Leakage (seed: 42)</h4>
+            <p style="font-size: 0.84rem; color: #475569; line-height: 1.5;">
+              Todo el vocabulario, cálculo de IDF y ajuste del estimador se calculó <strong>únicamente sobre Train (fit_transform)</strong>. Test se mantuvo 100% aislado (solo transform).
+            </p>
+          </div>
+          <div class="card">
+            <h4 style="color: #7C3AED; margin-bottom: 0.35rem; font-size: 0.92rem;">Fundamentación de Contratos de la API</h4>
+            <p style="font-size: 0.84rem; color: #475569; line-height: 1.5;">
+              Percentiles del EDA: Mediana P50 = 315 car. (78 pal.), P99 = 1.827 car. Esto fundamentó en FastAPI el rango estricto de <strong>[15, 5000] caracteres</strong> para rechazar textos vacíos o prevenir saturación DoS.
+            </p>
+          </div>
+        </div>
+        <div class="img-container">
+          <img src="assets/distribucion_sectores.png" alt="Distribución de Sectores EDA">
+        </div>
+      </div>
+      <div class="speaker-notes">
+        <strong>Guion del Expositor (45 seg):</strong> "El EDA en el notebook reveló un desbalance real: Salud tiene 28.7% y Ventas solo 6%. Por eso justificamos formalmente el F1-Score Macro y la estratificación exacta. Además, los percentiles justificaron los límites de la API de 15 a 5.000 caracteres."
+      </div>
+    </div>
+
+    <!-- ==================== SLIDE 5: NLP 1 - LIMPIEZA Y ENE ==================== -->
+    <div class="slide">
+      <div class="slide-header">
+        <div class="slide-title">Pipeline de NLP: Limpieza y Blindaje de la "Ñ"</div>
+        <div class="slide-badge">Fase 2.1: Normalización</div>
+      </div>
+      <div class="content-grid-2">
+        <div style="display: flex; flex-direction: column; gap: 0.9rem;">
+          <div class="card">
+            <h4 style="color: var(--primary); margin-bottom: 0.35rem; font-size: 0.95rem;">1. Supresión de Ruido Web y Tipográfico</h4>
+            <p style="font-size: 0.86rem; color: #475569; line-height: 1.5;">
+              Expresiones regulares compiladas eliminan URLs (<code>https://...</code>), correos electrónicos y menciones. Se reducen elongaciones (<em>"urgenteeeee"</em> → <em>"urgente"</em>) preservando dígrafos válidos (<em>"rr"</em>, <em>"ll"</em>).
+            </p>
+          </div>
+          <div class="card" style="border-left: 4px solid #EF4444;">
+            <h4 style="color: #DC2626; margin-bottom: 0.35rem; font-size: 0.95rem;">2. El Grave Peligro de librerías tipo 'unidecode'</h4>
+            <p style="font-size: 0.86rem; color: #475569; line-height: 1.5;">
+              Al desacentuar texto en español, las librerías en inglés convierten 'ñ' en 'n': <em>"año"</em> → <strong>"ano"</strong>, <em>"campaña"</em> → <strong>"campana"</strong>. Esto destruye la semántica del empleo.
+            </p>
+          </div>
+          <div class="card" style="border-left: 4px solid var(--success);">
+            <h4 style="color: var(--success); margin-bottom: 0.35rem; font-size: 0.95rem;">3. Nuestra Solución con unicodedata</h4>
+            <p style="font-size: 0.86rem; color: #475569; line-height: 1.5;">
+              Implementamos un <strong>blindaje centinela</strong>: protegemos temporalmente 'ñ'/'Ñ' con caracteres seguros, descomponemos acentos gráficos en NFD (eliminando tildes agudas y diéresis) y restauramos la 'ñ' intacta.
+            </p>
+          </div>
+        </div>
+        <div class="card" style="background: #0B0F19; color: #F8FAFC; border: 1px solid #1E293B;">
+          <div style="font-size: 0.8rem; font-weight: 700; color: #38BDF8; margin-bottom: 0.75rem; text-transform: uppercase;">Transformación en Vivo de Ejemplo Real:</div>
+          <div style="font-family: monospace; font-size: 0.82rem; line-height: 1.7;">
+            <div style="color: #94A3B8;">// Entrada cruda:</div>
+            <div style="color: #F87171; margin-bottom: 0.6rem;">"¡¡URGENTEEEEE!! Chofer para camión en España. Contacto: rrhh@job.es"</div>
+            <div style="color: #94A3B8;">// Desacentuar conservando Ñ:</div>
+            <div style="color: #FBBF24; margin-bottom: 0.6rem;">"urgente chofer para camion en españa" <span style="color: #34D399;">(camion sin tilde, ¡España con ñ!)</span></div>
+            <div style="color: #94A3B8;">// Tokenización (len &gt;= 2):</div>
+            <div style="color: #38BDF8;">['urgente', 'chofer', 'para', 'camion', 'en', 'españa']</div>
+          </div>
+        </div>
+      </div>
+      <div class="speaker-notes">
+        <strong>Guion del Expositor (45 seg):</strong> "Las librerías en inglés destruyen la eñe convirtiendo 'año' en 'ano'. Nosotros usamos unicodedata con un blindaje centinela que quita todas las tildes para unificar palabras, pero protege intacta la letra Ñ, además de suprimir URLs y elongaciones."
+      </div>
+    </div>
+
+    <!-- ==================== SLIDE 6: NLP 2 - STOPWORDS Y MORFOLOGIA ==================== -->
+    <div class="slide">
+      <div class="slide-header">
+        <div class="slide-title">Pipeline de NLP: Negaciones Blindadas y Morfología</div>
+        <div class="slide-badge">Fases 2.2 y 2.3: Estaciones NLP</div>
+      </div>
+      <div class="content-grid-2">
+        <div class="card" style="height: 100%; display: flex; flex-direction: column; justify-content: space-between;">
+          <div>
+            <h4 style="color: #D97706; margin-bottom: 0.5rem; font-size: 1rem;">Stop Words con Negaciones Blindadas 🛡️</h4>
+            <p style="font-size: 0.88rem; color: #475569; line-height: 1.6; margin-bottom: 0.6rem;">
+              En clasificación de empleo, eliminar palabras como <em>"no"</em>, <em>"sin"</em> o <em>"nunca"</em> invierte requisitos laborales:
+            </p>
+            <div style="background: #FEF3C7; border: 1px solid #FCD34D; padding: 0.6rem 0.85rem; border-radius: 8px; font-size: 0.85rem; color: #92400E; margin-bottom: 0.8rem;">
+              <em>"Sin experiencia requerida"</em> → Sin protección pasa a <strong>["experiencia", "requerida"]</strong> ❌
+            </div>
+            <p style="font-size: 0.86rem; color: #475569; line-height: 1.5;">
+              Definimos <code>NEGACIONES_BLINDADAS</code> (no, sin, nunca, jamás, nada) y añadimos jerga vacía de reclutamiento (<em>"se busca"</em>, <em>"se necesita"</em>) configurable desde <code>params.yaml</code>.
+            </p>
+          </div>
+          <div style="background: #F1F5F9; padding: 0.5rem 0.75rem; border-radius: 6px; font-size: 0.8rem; color: #475569;">
+            Alineación diacrítica: las stop words se desacentúan con la misma función que los tokens.
+          </div>
+        </div>
+
+        <div class="card" style="height: 100%; display: flex; flex-direction: column; justify-content: space-between;">
+          <div>
+            <h4 style="color: var(--primary); margin-bottom: 0.5rem; font-size: 1rem;">Morfología: Stemming vs Lematización</h4>
+            <p style="font-size: 0.88rem; color: #475569; line-height: 1.5; margin-bottom: 0.6rem;">
+              Comparamos empíricamente ambos métodos según exige la rúbrica oficial:
+            </p>
+            <table class="data-table" style="font-size: 0.82rem; margin-bottom: 0.8rem;">
+              <thead>
+                <tr>
+                  <th>Criterio</th>
+                  <th>Lematización (spaCy)</th>
+                  <th>Stemming (Snowball NLTK)</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>Velocidad</strong></td>
+                  <td>18.26 segundos</td>
+                  <td><strong>7.82 segundos (2.3x más rápido)</strong></td>
+                </tr>
+                <tr>
+                  <td><strong>F1-Macro</strong></td>
+                  <td>0.8836 (88.3%)</td>
+                  <td><strong>0.9041 (+2.05 puntos a favor) 🏆</strong></td>
+                </tr>
+                <tr>
+                  <td><strong>Jergas de empleo</strong></td>
+                  <td>Falla en oficios no formales</td>
+                  <td>Robusto al recortar sufijos</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div style="background: #EFF6FF; border: 1px solid #BFDBFE; padding: 0.5rem 0.75rem; border-radius: 6px; font-size: 0.8rem; color: #1E40AF;">
+            <strong>Clase TextPreprocessor:</strong> Implementa <code>.explain()</code> para auditar las 5 estaciones en FastAPI y React.
+          </div>
+        </div>
+      </div>
+      <div class="speaker-notes">
+        <strong>Guion del Expositor (50 seg):</strong> "Si borramos 'sin', 'sin experiencia' se convierte en 'experiencia'. Por eso blindamos las negaciones. Además, comparamos Stemming y Lematización: Snowball Stemmer no solo fue el doble de rápido, sino que sacó 2 puntos más de F1 porque agrupa perfectamente las jergas de oficios."
+      </div>
+    </div>
+
+    <!-- ==================== SLIDE 7: TF-IDF Y PIPELINE ==================== -->
+    <div class="slide">
+      <div class="slide-header">
+        <div class="slide-title">Vectorización TF-IDF (1, 2) y Pipeline Unificado</div>
+        <div class="slide-badge">Fase 2.4: Representación Vectorial</div>
+      </div>
+      <div class="flow-chain">
+        <div class="flow-step-card" style="border-top: 4px solid #0284C7;">
+          <div class="flow-step-title" style="color: #0284C7;">1. Normalización</div>
+          <div class="flow-step-text">Regex URLs y emails<br><strong>Blindaje centinela Ñ</strong></div>
+        </div>
+        <div class="flow-connector">→</div>
+        <div class="flow-step-card" style="border-top: 4px solid #3B82F6;">
+          <div class="flow-step-title" style="color: #3B82F6;">2. Tokenización</div>
+          <div class="flow-step-text">Separación léxica<br>Filtro long ≥ 2 car.</div>
+        </div>
+        <div class="flow-connector">→</div>
+        <div class="flow-step-card" style="border-top: 4px solid #D97706;">
+          <div class="flow-step-title" style="color: #D97706;">3. Stop Words</div>
+          <div class="flow-step-text">NLTK español +<br><strong>Negaciones blindadas</strong></div>
+        </div>
+        <div class="flow-connector">→</div>
+        <div class="flow-step-card" style="border-top: 4px solid #EA580C;">
+          <div class="flow-step-title" style="color: #EA580C;">4. Morfología</div>
+          <div class="flow-step-text">Snowball Stemmer<br><strong>2.3x veloz (+2 pts F1)</strong></div>
+        </div>
+        <div class="flow-connector">→</div>
+        <div class="flow-step-card" style="border-top: 4px solid #059669;">
+          <div class="flow-step-title" style="color: #059669;">5. TF-IDF</div>
+          <div class="flow-step-text">N-gramas (1, 2)<br><code>sublinear_tf=True</code></div>
+        </div>
+      </div>
+      <div class="content-grid-2">
+        <div class="card">
+          <h4 style="color: var(--primary); margin-bottom: 0.4rem; font-size: 0.95rem;">Captura de Contexto con N-Gramas (1, 2)</h4>
+          <p style="font-size: 0.86rem; color: #475569; line-height: 1.5;">
+            Los unigramas destruyen el orden. Con bigramas, combinaciones decisivas como <em>"sin_experienci"</em>, <em>"atencion_client"</em> o <em>"auxili_enferm"</em> obtienen un peso numérico independiente en la matriz dispersa.
+          </p>
+          <div style="margin-top: 0.6rem; font-size: 0.82rem; color: #64748B;">
+            Cálculo verificado a mano con <code>smooth_idf=True</code> y norma L2 en <code>tests/test_pipeline.py</code>.
+          </div>
+        </div>
+        <div class="card">
+          <h4 style="color: #7C3AED; margin-bottom: 0.4rem; font-size: 0.95rem;">Hiperparámetros en params.yaml</h4>
+          <ul style="font-size: 0.84rem; color: #475569; padding-left: 1.1rem; line-height: 1.6;">
+            <li><code>max_features: 4000</code>: Previene la maldición de la dimensionalidad y sobreajuste.</li>
+            <li><code>min_df: 2</code>: Descarta erratas tipográficas presentes solo 1 vez.</li>
+            <li><code>max_df: 0.85</code>: Filtra términos omnipresentes sin poder discriminativo.</li>
+            <li><code>sublinear_tf: true</code>: Escala logarítmica (1 + ln(tf)) para rendimientos decrecientes.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="speaker-notes">
+        <strong>Guion del Expositor (45 seg):</strong> "TF-IDF traduce texto limpio a coordenadas matemáticas sin clasificar. Con bigramas (1, 2) logramos que frases compuestas reciban peso propio. Todo el preprocesamiento y el vectorizador se ensamblan en un solo Pipeline de Scikit-Learn exportable a joblib."
+      </div>
+    </div>
+
+    <!-- ==================== SLIDE 8: EXPERIMENTOS Y VALIDACIÓN CRUZADA ==================== -->
+    <div class="slide">
+      <div class="slide-header">
+        <div class="slide-title">Matriz de 13 Experimentos y Validación Cruzada</div>
+        <div class="slide-badge">Fase 3.1: Modelado y Comparación</div>
+      </div>
+      <div class="content-grid-2">
+        <div style="display: flex; flex-direction: column; gap: 0.9rem;">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Modelo</th>
+                <th>Configuración</th>
+                <th>F1-Macro (k=5)</th>
+                <th>Estado</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Línea Base (Dummy)</td>
+                <td>Estrategia most_frequent</td>
+                <td>0.0892 ± 0.0002</td>
+                <td><span style="color: #94A3B8;">Superado</span></td>
+              </tr>
+              <tr>
+                <td>Multinomial Naive Bayes</td>
+                <td>&alpha; = 0.1, unigramas</td>
+                <td>0.8373 ± 0.0269</td>
+                <td><span style="color: #0284C7;">Candidato</span></td>
+              </tr>
+              <tr>
+                <td>Regresión Logística</td>
+                <td>C=2.0 (sin balanceo)</td>
+                <td>0.8775 ± 0.0314</td>
+                <td><span style="color: #D97706;">Mejorable</span></td>
+              </tr>
+              <tr class="winner">
+                <td>Regresión Logística</td>
+                <td>C=2.0 (class_weight='balanced')</td>
+                <td><strong>0.9041 ± 0.0136</strong></td>
+                <td><span style="color: #059669;">🏆 Ganador</span></td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="card" style="padding: 0.8rem 1rem;">
+            <h4 style="color: #0F172A; font-size: 0.88rem; margin-bottom: 0.3rem;">¿Por qué ganó Regresión Logística?</h4>
+            <p style="font-size: 0.82rem; color: #475569; line-height: 1.5;">
+              Naive Bayes asume independencia irreal entre palabras. La Regresión Logística calcula combinaciones lineales de pesos matemáticos (coeficientes &beta;) y ajusta penalizaciones proporcionales con <code>class_weight='balanced'</code> (+1.86 F1), protegiendo clases minoritarias.
+            </p>
+          </div>
+        </div>
+        <div class="img-container">
+          <img src="assets/comparativa_modelos.png" alt="Comparativa de Modelos CV">
+        </div>
+      </div>
+      <div class="speaker-notes">
+        <strong>Guion del Expositor (50 seg):</strong> "Realizamos 13 experimentos con validación cruzada estratificada k=5 exclusivamente sobre Train. La Regresión Logística superó a Naive Bayes por casi 7 puntos de F1. Demostramos además el fracaso de la línea base Dummy, cuyo Accuracy era engañoso."
+      </div>
+    </div>
+
+    <!-- ==================== SLIDE 9: TEST SET Y ANÁLISIS DE ERRORES ==================== -->
+    <div class="slide">
+      <div class="slide-header">
+        <div class="slide-title">Evaluación Ciega en Test y Análisis de Errores</div>
+        <div class="slide-badge">Fases 3.2 y 3.4: Evidencia Científica</div>
+      </div>
+      <div class="content-grid-2">
+        <div style="display: flex; flex-direction: column; gap: 0.9rem;">
+          <div class="kpi-row" style="grid-template-columns: 1fr 1fr; margin-bottom: 0;">
+            <div class="kpi-card">
+              <div class="kpi-value" style="color: var(--success);">91.55%</div>
+              <div class="kpi-label">F1-Score Macro Oficial</div>
+            </div>
+            <div class="kpi-card">
+              <div class="kpi-value" style="color: var(--primary);">91.32%</div>
+              <div class="kpi-label">Exactitud (610/668 aciertos)</div>
+            </div>
+          </div>
+          <div class="card" style="border-left: 4px solid #D97706;">
+            <h4 style="color: #D97706; margin-bottom: 0.35rem; font-size: 0.92rem;">Diagnóstico de los 58 Fallos (Punto 5.3)</h4>
+            <p style="font-size: 0.84rem; color: #475569; line-height: 1.5;">
+              Documentados cualitativamente en <code>artifacts/errors.csv</code>:
+            </p>
+            <ul style="font-size: 0.8rem; color: #475569; padding-left: 1rem; line-height: 1.5; margin-top: 0.3rem;">
+              <li><strong>Vocabulario cruzado (28):</strong> Farmacia comunitaria confundida con Ventas por términos comerciales (<em>"cobro en caja"</em>, <em>"atención cliente"</em>).</li>
+              <li><strong>Roles híbridos (9):</strong> Reparación de hornos en hostelería atraída hacia Construcción/Mantenimiento.</li>
+              <li><strong>Variantes regionales (14):</strong> Textos en catalán sin traducción previa (<em>"cerquem"</em>).</li>
+            </ul>
+          </div>
+        </div>
+        <div class="img-container">
+          <img src="assets/matriz_confusion_5x5.png" alt="Matriz de Confusión 5x5 Test Set">
+        </div>
+      </div>
+      <div class="speaker-notes">
+        <strong>Guion del Expositor (50 seg):</strong> "Sobre 668 ofertas nunca vistas, el modelo alcanzó 91.55% de F1. En la matriz se observa la sólida diagonal: Construcción 94%, Hostelería 93%, Salud 93% y Ventas 95%. Auditamos lingüísticamente los 58 fallos por vocabulario comercial y puestos híbridos."
+      </div>
+    </div>
+
+    <!-- ==================== SLIDE 10: ARQUITECTURA FASTAPI Y DOCKER ==================== -->
+    <div class="slide">
+      <div class="slide-header">
+        <div class="slide-title">Arquitectura de Software, Backend y Docker</div>
+        <div class="slide-badge">Fases 4 y 5.5: Producción</div>
+      </div>
+      <div class="flow-chain">
+        <div class="flow-step-card" style="border-top: 4px solid #0284C7;">
+          <div class="flow-step-title" style="color: #0284C7;">1. Navegador Web</div>
+          <div class="flow-step-text">React 18 + Vite (Clean SaaS)<br>Pestañas, Dropzone CSV y Blob</div>
+        </div>
+        <div class="flow-connector">→</div>
+        <div class="flow-step-card" style="border-top: 4px solid #3B82F6;">
+          <div class="flow-step-title" style="color: #3B82F6;">2. Nginx Alpine</div>
+          <div class="flow-step-text">Reverse Proxy en puerto :8080<br>Rutas SPA + Proxy <code>/api/*</code></div>
+        </div>
+        <div class="flow-connector">→</div>
+        <div class="flow-step-card" style="border-top: 4px solid #7C3AED;">
+          <div class="flow-step-title" style="color: #7C3AED;">3. Backend FastAPI</div>
+          <div class="flow-step-text">3 Capas (schemas, service)<br><strong>Fail-Fast 422 · Lifespan RAM</strong></div>
+        </div>
+        <div class="flow-connector">→</div>
+        <div class="flow-step-card" style="border-top: 4px solid #059669;">
+          <div class="flow-step-title" style="color: #059669;">4. Pipeline ML/NLP</div>
+          <div class="flow-step-text"><code>model.joblib</code> (321 KB)<br><strong>Inferencia &lt; 5ms (Softmax)</strong></div>
+        </div>
+      </div>
+      <div class="content-grid-2">
+        <div class="card">
+          <h4 style="color: #0284C7; margin-bottom: 0.35rem; font-size: 0.95rem;">Backend FastAPI en 3 Capas</h4>
+          <ul style="font-size: 0.84rem; color: #475569; padding-left: 1.1rem; line-height: 1.6;">
+            <li><code>schemas.py</code>: Validación en el borde Fail-Fast HTTP 422 con Pydantic v2.</li>
+            <li><code>service.py</code>: Patrón <strong>Lifespan</strong> (carga única en RAM, inferencia &lt; 5ms).</li>
+            <li><code>main.py</code>: Endpoints REST tipados (<code>/health</code>, <code>/predict</code>, <code>/batch</code>, <code>/metrics</code>).</li>
+            <li>Cero reimplementación de limpieza: la API consume <code>model.joblib</code> directamente.</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h4 style="color: #059669; margin-bottom: 0.35rem; font-size: 0.95rem;">Producción con Nginx y Calidad</h4>
+          <ul style="font-size: 0.84rem; color: #475569; padding-left: 1.1rem; line-height: 1.6;">
+            <li><strong>Nginx Reverse Proxy:</strong> Expone el puerto 8080 y redirige internamente a <code>/api/*</code> sin conflictos de CORS.</li>
+            <li><strong>Docker Multi-Etapa:</strong> Imagen de frontend ultraligera en Alpine (&lt; 25 MB).</li>
+            <li><strong>81 Pruebas Unitarias Pytest:</strong> Coberura de regex, contratos y propiedades Softmax (100% en verde).</li>
+          </ul>
+        </div>
+      </div>
+      <div class="speaker-notes">
+        <strong>Guion del Expositor (45 seg):</strong> "La API está desacoplada en 3 capas. El modelo se carga en RAM una sola vez al arrancar para responder en milisegundos. Todo se levanta con un solo comando en Docker Compose con Nginx como Reverse Proxy y 81 pruebas en verde."
+      </div>
+    </div>
+
+    <!-- ==================== SLIDE 11: DEMOSTRACIÓN EN VIVO ==================== -->
+    <div class="slide">
+      <div class="slide-header">
+        <div class="slide-title">Demostración del Sistema en Vivo</div>
+        <div class="slide-badge">Ejecución en Tiempo Real</div>
+      </div>
+      <div class="content-grid-2-custom">
+        <div class="img-container" style="max-height: 360px;">
+          <img src="assets/interfaz_web.png" alt="Interfaz Web JobScope AI" style="max-height: 340px;">
+        </div>
+        <div class="feature-list">
+          <div class="card" style="border-left: 4px solid #0284C7;">
+            <h4 style="color: #0284C7; font-size: 0.95rem;">1. Pestaña: Análisis Individual</h4>
+            <p style="font-size: 0.85rem; color: #475569;">Inferencia inmediata con 5 botones de ejemplo y desglose anatómico de las 5 estaciones NLP.</p>
+          </div>
+          <div class="card" style="border-left: 4px solid #EA580C;">
+            <h4 style="color: #EA580C; font-size: 0.95rem;">2. Pestaña: Procesamiento Masivo CSV</h4>
+            <p style="font-size: 0.85rem; color: #475569;">Drag &amp; Drop de lotes masivos, predicción vectorizada en un solo pase y descarga mediante Blob.</p>
+          </div>
+          <div class="card" style="border-left: 4px solid var(--success);">
+            <h4 style="color: var(--success); font-size: 0.95rem;">3. Pestaña: Dashboard de Métricas</h4>
+            <p style="font-size: 0.85rem; color: #475569;">Heatmap interactivo 5×5, comparativa con Baseline y ranking de coeficientes &beta; (términos más decisivos).</p>
+          </div>
+        </div>
+      </div>
+      <div class="speaker-notes">
+        <strong>Transición Inmediata:</strong> "A continuación, pasemos al navegador en http://localhost:8080 para ver la solución funcionando de punta a punta." → <em>(Haces Alt + Tab al navegador)</em>.
+      </div>
+    </div>
+
+    <!-- ==================== SLIDE 12: CONCLUSIONES Y RÚBRICA ==================== -->
+    <div class="slide">
+      <div class="slide-header">
+        <div class="slide-title">Conclusiones y Cumplimiento de la Rúbrica</div>
+        <div class="slide-badge">Cierre de Proyecto</div>
+      </div>
+      <div class="content-grid-2">
+        <div class="card" style="height: 100%; display: flex; flex-direction: column; justify-content: center; gap: 1.1rem;">
+          <div style="display: flex; gap: 0.8rem; align-items: center;">
+            <span style="font-size: 1.6rem;">🎯</span>
+            <div>
+              <strong style="font-size: 1rem; color: #0F172A;">Rúbrica Oficial al 100%</strong>
+              <p style="font-size: 0.84rem; color: #64748B;">Desde datos crudos EURES hasta interfaz en Nginx Docker y 81 pruebas en verde.</p>
+            </div>
+          </div>
+          <div style="display: flex; gap: 0.8rem; align-items: center;">
+            <span style="font-size: 1.6rem;">📊</span>
+            <div>
+              <strong style="font-size: 1rem; color: var(--success);">Alto Rendimiento Científico</strong>
+              <p style="font-size: 0.84rem; color: #64748B;">F1-Macro de 91.55%, inferencia &lt; 5ms y artefacto congelado de 321 KB.</p>
+            </div>
+          </div>
+          <div style="display: flex; gap: 0.8rem; align-items: center;">
+            <span style="font-size: 1.6rem;">⚙️</span>
+            <div>
+              <strong style="font-size: 1rem; color: var(--primary);">Modificación en Vivo Garantizada (params.yaml)</strong>
+              <p style="font-size: 0.84rem; color: #64748B;">Cualquier cambio de parámetro (C, stopwords, n-gramas) se reentrena en 1 comando sin tocar código.</p>
+            </div>
+          </div>
+        </div>
+        <div class="card" style="text-align: center; padding: 2.2rem 1.5rem; display: flex; flex-direction: column; justify-content: center; align-items: center;">
+          <div style="font-size: 2.8rem; margin-bottom: 0.8rem;">💼</div>
+          <h3 style="font-size: 1.35rem; color: #0F172A; margin-bottom: 0.4rem;">¡Muchas Gracias!</h3>
+          <p style="color: #64748B; font-size: 0.92rem; margin-bottom: 1.25rem;">
+            Disponible para preguntas del jurado y la modificación en vivo.
+          </p>
+          <div style="display: inline-block; background: #EFF6FF; border: 1px solid #BFDBFE; color: var(--primary); padding: 0.4rem 1rem; border-radius: 9999px; font-weight: 700; font-size: 0.85rem;">
+            Etiqueta Git: entrega-final ✅
+          </div>
+        </div>
+      </div>
+      <div class="speaker-notes">
+        <strong>Guion del Expositor (20 seg):</strong> "Con esto concluyo la exposición general. Quedo a su total disposición para las preguntas sobre el historial de commits y la modificación en vivo asignada."
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Controles flotantes de navegación -->
+  <div class="nav-controls">
+    <button class="nav-btn" id="prevBtn" title="Anterior (Flecha izquierda)">‹</button>
+    <div class="nav-counter" id="slideCounter">1 / 12</div>
+    <button class="nav-btn" id="nextBtn" title="Siguiente (Flecha derecha o Espacio)">›</button>
+    <button class="nav-notes-btn" id="toggleNotesBtn" title="Mostrar/Ocultar Notas del Expositor (Tecla N)">
+      <span>📝</span> <span>Notas (N)</span>
+    </button>
+  </div>
+
+  <script>
+    const slides = document.querySelectorAll('.slide');
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+    const slideCounter = document.getElementById('slideCounter');
+    const progressBar = document.getElementById('progressBar');
+    const toggleNotesBtn = document.getElementById('toggleNotesBtn');
+
+    let currentSlide = 0;
+    const totalSlides = slides.length;
+
+    function updateSlide(index) {
+      slides.forEach((s, i) => s.classList.toggle('active', i === index));
+      slideCounter.textContent = `${index + 1} / ${totalSlides}`;
+      progressBar.style.width = `${((index + 1) / totalSlides) * 100}%`;
+    }
+
+    function toggleNotes() {
+      document.body.classList.toggle('show-notes');
+    }
+
+    if (toggleNotesBtn) {
+      toggleNotesBtn.addEventListener('click', toggleNotes);
+    }
+
+    prevBtn.addEventListener('click', () => {
+      if (currentSlide > 0) {
+        currentSlide--;
+        updateSlide(currentSlide);
+      }
+    });
+
+    nextBtn.addEventListener('click', () => {
+      if (currentSlide < totalSlides - 1) {
+        currentSlide++;
+        updateSlide(currentSlide);
+      }
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'PageDown') {
+        if (currentSlide < totalSlides - 1) {
+          currentSlide++;
+          updateSlide(currentSlide);
+        }
+      } else if (e.key === 'ArrowLeft' || e.key === 'PageUp') {
+        if (currentSlide > 0) {
+          currentSlide--;
+          updateSlide(currentSlide);
+        }
+      } else if (e.key === 'n' || e.key === 'N') {
+        toggleNotes();
+      }
+    });
+
+    updateSlide(0);
+  </script>
+</body>
+</html>
+
